@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms'
 import { AuthService } from '../services/auth.service';
 import { catchError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ import { catchError } from 'rxjs';
 export class LoginComponent {
 
   authService = inject(AuthService);
+  router = inject(Router);
   res: string = ""
 
   loginForm = new FormGroup({
@@ -29,6 +31,8 @@ export class LoginComponent {
             if (res.status === 0){
               localStorage.setItem('access_token', res.token);
               console.log(res);
+              this.router.navigate(['/dashboard']);
+
             }
           },
           (err) => {
@@ -39,7 +43,5 @@ export class LoginComponent {
     }
   }
 
-  onLogout(){
-    localStorage.removeItem('access_token');
-  }
+
 }

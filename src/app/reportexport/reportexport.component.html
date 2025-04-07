@@ -1,0 +1,49 @@
+<p>reportexport works!</p>
+<table mat-table [dataSource]="datasource">
+
+    <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Student ID </th>
+        <td mat-cell *matCellDef="let student"> {{ student.id }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> First Name </th>
+        <td mat-cell *matCellDef="let student"> {{ student.firstName }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Last Name </th>
+        <td mat-cell *matCellDef="let student"> {{ student.lastName }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="birthDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date of Birth </th>
+        <td mat-cell *matCellDef="let student"> {{ student.birthDate  }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="class">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Class </th>
+        <td mat-cell *matCellDef="let student"> {{ student.class }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Score </th>
+        <td mat-cell *matCellDef="let student"> {{ student.score }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+        <td mat-cell *matCellDef="let student"> {{ student.status }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="photoPath">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Photo </th>
+        <td mat-cell *matCellDef="let student">
+          <img [src]="student.photoPath" alt="Student Photo" width="50" height="50" *ngIf="student.photoPath" />
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+

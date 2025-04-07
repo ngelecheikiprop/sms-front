@@ -1,9 +1,11 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { StudentsService } from '../services/students.service';
+import { MenuComponent } from '../components/menu/menu.component';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-dashbaord',
-  imports: [],
+  imports: [MenuComponent, RouterOutlet],
   templateUrl: './dashbaord.component.html',
   styleUrl: './dashbaord.component.css'
 })
@@ -18,6 +20,4 @@ export class DashbaordComponent implements OnInit{
         this.studentCount.set(res);
       })
   }
-
-  
 }

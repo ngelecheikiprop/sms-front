@@ -6,11 +6,8 @@ import { LoginResponse } from '../model/loginResponse.type';
   providedIn: 'root'
 })
 export class AuthService {
-
-  //http = inject(HttpClient);
   readonly url = "http://localhost:8080/login";
   constructor(private http: HttpClient) { }
-
   login (username: string, password: string){
     const body = {username, password };
     const headers = new HttpHeaders()

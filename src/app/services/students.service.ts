@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { LoginResponse } from '../model/loginResponse.type';
+import { Student } from '../model/student.type';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,13 @@ export class StudentsService {
     return this.http.get<number>(this.url, { headers });
   }
 
-  
-
+  getStudents(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+ localStorage.getItem('access_token') || ''
+    });
+    console.log(headers);
+    this.url = this.baseUrl;
+    return this.http.get<Array<Student>>(this.url, { headers });
+  }
 }
