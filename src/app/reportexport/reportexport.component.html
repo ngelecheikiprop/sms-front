@@ -13,14 +13,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students()">
+    <tr *ngFor="let student of students() | filterStatus">
       <td>{{ student.id }}</td>
       <td>{{ student.firstName }}</td>
       <td>{{ student.lastName }}</td>
       <td>{{ student.birthDate }}</td>
       <td>{{ student.className }}</td>
       <td>{{ student.score }}</td>
-      <td>{{ student.status }}</td>
+      <!--<td>{{ student.status }}</td>-->
       <td><img [src]="student.photoPath" alt="photo" width="50" height="50"></td>
       <td>
         <button (click)="viewStudent(student.id)">View</button>

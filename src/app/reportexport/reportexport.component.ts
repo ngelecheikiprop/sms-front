@@ -2,6 +2,7 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { StudentsService } from '../services/students.service';
 import { NgFor } from '@angular/common';
 import { MenuComponent } from "../components/menu/menu.component";
+import { FilterStatusPipe } from '../pipe/filter-status.pipe';
 
 export interface Student {
   id: number;
@@ -18,7 +19,8 @@ export interface Student {
   selector: 'app-reportexport',
   imports: [
     NgFor,
-    MenuComponent
+    MenuComponent,
+    FilterStatusPipe
   ],
   templateUrl: './reportexport.component.html',
   styleUrl: './reportexport.component.css'
