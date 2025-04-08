@@ -22,6 +22,11 @@
       <td>{{ student.score }}</td>
       <td>{{ student.status }}</td>
       <td><img [src]="student.photoPath" alt="photo" width="50" height="50"></td>
+      <td>
+        <button (click)="viewStudent(student.id)">View</button>
+        <button (click)="editStudent(student.id)">Edit</button>
+        <button (click)="deleteStudent(student.id)">Delete</button>
+      </td> 
     </tr>
   </tbody>
 </table>

@@ -24,13 +24,29 @@ export interface Student {
   styleUrl: './reportexport.component.css'
 })
 export class ReportexportComponent implements OnInit {
+deleteStudent(studentId: number) {
+  console.log("deleting student:"+ studentId);
+  this.studentService.deleteStudent(studentId).subscribe(
+    (res)=>{
+      console.log(res);
+    },
+    (err)=>{
+      console.error(err);
+    }
+  );
+}
+editStudent(studentId: number) {
+  console.log("editing student:"+ studentId);
+}
+viewStudent(StudentId: number) {
+  console.log("viewing student : "+ StudentId)
+}
   pageNo: number = 0;  
   pageSize: number = 10;  
   currentPage: number = 0; 
   totalPages: number = 1; 
   students = signal<Array<Student>>([]);
   studentService = inject(StudentsService);
-
 
   constructor() { }
 

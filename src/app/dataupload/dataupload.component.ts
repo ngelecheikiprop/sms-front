@@ -20,5 +20,4 @@ this.studentService.uploadStudentData().subscribe(
   }
 );
 }
-
 }

@@ -60,4 +60,12 @@ export class StudentsService {
     });
     return this.http.post<any>(`${this.baseUrl}/data-upload`,{}, { headers });
   }
+
+  deleteStudent(studentId: any){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+ localStorage.getItem('access_token') || ''
+    });
+    return this.http.delete<any>(`${this.baseUrl}/${studentId}`, { headers });
+  }
 }
