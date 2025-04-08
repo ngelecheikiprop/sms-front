@@ -1,22 +1,29 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { Student } from '../model/student.type';
-import { HttpClient } from '@angular/common/http';
+//import { Student } from '../model/student.type';
 import { StudentsService } from '../services/students.service';
-import { MatColumnDef, MatHeaderRowDef, MatRowDef, MatTable, MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
+import { NgFor } from '@angular/common';
+
+
+export interface Student {
+  id: number;
+  firstName:string;
+  lastName: string;
+  birthDate: string;
+  className: string;
+  score: number;
+  status: number;
+  photoPath: string;
+}
 
 @Component({
   selector: 'app-reportexport',
   imports: [
-    MatTable,
-    MatHeaderRowDef,
-    MatRowDef,
-    MatColumnDef
+    NgFor
   ],
   templateUrl: './reportexport.component.html',
   styleUrl: './reportexport.component.css'
 })
-export class ReportexportComponent implements OnInit{
+export class ReportexportComponent {
   students = signal<Array<Student>>([]);
   studentService = inject(StudentsService);
   datasource: any;
@@ -26,10 +33,7 @@ export class ReportexportComponent implements OnInit{
   ngOnInit(): void {
       this.studentService.getStudents().subscribe(
         (data)=>{
-         
           this.students.set(data);
-          this.datasource.data = new MatTableDataSource<Student>(this.students());
-          console.log(this.students())
         },
         (err) => {
           console.log(err);
