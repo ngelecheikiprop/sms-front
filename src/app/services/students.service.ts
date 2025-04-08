@@ -29,9 +29,8 @@ export class StudentsService {
       'Content-Type': 'application/json',
       'Authorization': 'Bearer '+ localStorage.getItem('access_token') || ''
     });
-    //this.url = this.baseUrl + `?pageNo=${pageNo}&pageSize=${pageSize}`;
-    //return this.http.get<Array<Student>>(this.url, { headers });
     return this.http.get<any>(`${this.baseUrl}?pageNo=${pageNo}&pageSize=${pageSize}`, { headers });
-    // students.service.ts
   }
+
+  
 }
