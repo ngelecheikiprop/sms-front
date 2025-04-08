@@ -44,4 +44,12 @@ export class StudentsService {
     console.log("the url is: "+`${this.baseUrl}/generate-excel/${count}`);
     return this.http.post<any>(`${this.baseUrl}/generate-excel/${count}`,{}, { headers });
   }
+
+  processStudentData(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+ localStorage.getItem('access_token') || ''
+    });
+    return this.http.post<any>(`${this.baseUrl}/data-process`,{}, { headers });
+  }
 }
