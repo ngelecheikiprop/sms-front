@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { MenuComponent } from "../components/menu/menu.component";
 
 @Component({
   selector: 'app-dataprocess',
-  imports: [],
+  imports: [MenuComponent],
   templateUrl: './dataprocess.component.html',
   styleUrl: './dataprocess.component.css'
 })

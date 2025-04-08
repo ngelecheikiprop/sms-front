@@ -1,12 +1,11 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-//import { Student } from '../model/student.type';
 import { StudentsService } from '../services/students.service';
 import { NgFor } from '@angular/common';
-
+import { MenuComponent } from "../components/menu/menu.component";
 
 export interface Student {
   id: number;
-  firstName:string;
+  firstName: string;
   lastName: string;
   birthDate: string;
   className: string;
@@ -18,26 +17,53 @@ export interface Student {
 @Component({
   selector: 'app-reportexport',
   imports: [
-    NgFor
+    NgFor,
+    MenuComponent
   ],
   templateUrl: './reportexport.component.html',
   styleUrl: './reportexport.component.css'
 })
-export class ReportexportComponent {
+export class ReportexportComponent implements OnInit {
+  pageNo: number = 0;  
+  pageSize: number = 10;  
+  currentPage: number = 0; 
+  totalPages: number = 1; 
   students = signal<Array<Student>>([]);
   studentService = inject(StudentsService);
-  datasource: any;
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'birthDate', 'className', 'score', 'status', 'photoPath'];
 
+
+  constructor() { }
 
   ngOnInit(): void {
-      this.studentService.getStudents().subscribe(
-        (data)=>{
-          this.students.set(data);
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+    this.loadStudents();
+  }
+
+  loadStudents(): void {
+    this.studentService.getStudents(this.pageNo, this.pageSize).subscribe(
+      (res: any) => {
+        console.log(res.content);
+        this.students.set(res.content);
+        this.totalPages = res.totalPages;
+      },
+      (err: any) => {
+        console.log(err);
+      }
+    );
+  }
+
+  onPageNext(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.pageNo++;
+      this.loadStudents();
+    }
+  }
+
+  onPagePrevious(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.pageNo--;
+      this.loadStudents();
+    }
   }
 }

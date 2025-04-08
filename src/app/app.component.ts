@@ -7,7 +7,7 @@ import { MenuComponent } from "./components/menu/menu.component";
   selector: 'app-root',
   imports: [RouterOutlet, MenuComponent, LoginComponent],
   template: `
-  <app-menu/>
+
   <router-outlet />
   `,
   styles: [],

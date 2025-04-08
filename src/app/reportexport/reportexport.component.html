@@ -1,3 +1,5 @@
+<app-menu></app-menu>
+
 <table class="student-table">
   <thead>
     <tr>
@@ -24,3 +26,9 @@
     </tr>
   </tbody>
 </table>
+
+<div class="pagination-controls">
+  <button (click)="onPagePrevious()" [disabled]="currentPage === 0">Previous</button>
+  <span>Page {{ currentPage + 1 }} of {{ totalPages }}</span>
+  <button (click)="onPageNext()" [disabled]="currentPage === totalPages - 1">Next</button>
+</div>

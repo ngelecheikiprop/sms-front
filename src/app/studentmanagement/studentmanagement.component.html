@@ -1,12 +1,32 @@
-<p>studentmanagement works!</p>
-<div>
-    <table>
-        <tr>
-            <td> First Name</td>
-            <td>Class</td>
-        </tr>
-        <tr>
-            <td>kiprop</td>
-        </tr>
-    </table>
-</div>
+<app-menu/>
+  <table class="student-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Birth Date</th>
+        <th>Class</th>
+        <th>Score</th>
+        <th>Status</th>
+        <th>Photo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of dataSource">
+        <td>{{ student.id }}</td>
+        <td>{{ student.firstName }}</td>
+        <td>{{ student.lastName }}</td>
+        <td>{{ student.birthDate }}</td>
+        <td>{{ student.className }}</td>
+        <td>{{ student.score }}</td>
+        <td>{{ student.status }}</td>
+        <td><img [src]="student.photoPath" alt="photo" width="50" height="50"></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination-controls">
+    <button >Previous</button>
+    <span>Page 1 of 10</span>
+    <button >Next</button>
+  </div>
