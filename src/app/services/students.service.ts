@@ -52,4 +52,12 @@ export class StudentsService {
     });
     return this.http.post<any>(`${this.baseUrl}/data-process`,{}, { headers });
   }
+
+  uploadStudentData(){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+ localStorage.getItem('access_token') || ''
+    });
+    return this.http.post<any>(`${this.baseUrl}/data-upload`,{}, { headers });
+  }
 }
