@@ -11,6 +11,10 @@ export class StudentsService {
 
   readonly baseUrl = "http://localhost:8080/api/v1/students";//localhost:8080/api/v1/students/count
   url: string = "";
+  readonly headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer '+ localStorage.getItem('access_token') || ''
+  });
 
   constructor(private http: HttpClient) { }
 
@@ -32,5 +36,12 @@ export class StudentsService {
     return this.http.get<any>(`${this.baseUrl}?pageNo=${pageNo}&pageSize=${pageSize}`, { headers });
   }
 
-  
+  generateStudentData(count: number){
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer '+ localStorage.getItem('access_token') || ''
+    });
+    console.log("the url is: "+`${this.baseUrl}/generate-excel/${count}`);
+    return this.http.post<any>(`${this.baseUrl}/generate-excel/${count}`,{}, { headers });
+  }
 }

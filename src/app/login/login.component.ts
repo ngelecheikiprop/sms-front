@@ -32,7 +32,6 @@ export class LoginComponent {
               localStorage.setItem('access_token', res.token);
               console.log(res);
               this.router.navigate(['/dashboard']);
-
             }
           },
           (err) => {
